@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Avisos | Leleka's Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #292325;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+        }
+
+        .card-container {
+            position: relative;
+            background-color: #fce4ec;
+            color: #73512F;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .page-content {
+            min-height: 100%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-image: linear-gradient(to bottom, rgba(253, 226, 236, 0.808) 50%, rgba(250, 195, 218, 0.75)),
+                url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .back-link {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: #73512F;
+            font-size: clamp(0.75rem, 1.8vh, 0.9rem);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 2vh;
+        }
+
+        .back-link span.arrow {
+            font-size: 1.1rem;
+        }
+
+        .page-header .stars {
+            font-size: clamp(1.1rem, 2.8vh, 1.4rem);
+            letter-spacing: 5px;
+            margin-bottom: 0.5vh;
+            color: #d4af37;
+        }
+
+        .page-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.6rem, 6vh, 3.6rem);
+            font-weight: normal;
+            color: #73512F;
+            line-height: 1;
+        }
+
+        .page-subtitle {
+            font-size: clamp(0.85rem, 1.9vh, 1.05rem);
+            letter-spacing: 4px;
+            margin: 0.8vh 0 3vh;
+            color: #8B5A2B;
+            border-top: 1px solid rgba(139, 90, 43, 0.3);
+            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
+            padding: 4px 15px;
+            display: inline-block;
+        }
+
+        .notice-list {
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 3vh;
+        }
+
+        .notice-card {
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 6px;
+            padding: 2vw;
+            text-align: left;
+        }
+
+        .notice-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1vh;
+        }
+
+        .notice-icon {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid #d4af37;
+            background: rgba(255, 255, 255, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .notice-title {
+            font-size: clamp(0.9rem, 2vh, 1.05rem);
+            font-weight: 700;
+            color: #73512F;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-text {
+            font-size: clamp(0.78rem, 1.8vh, 0.9rem);
+            color: #5c3d1e;
+            line-height: 1.6;
+        }
+
+        .bus-schedule {
+            margin-top: 1.2vh;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bus-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed rgba(139, 90, 43, 0.35);
+            padding-top: 8px;
+            font-size: clamp(0.78rem, 1.8vh, 0.9rem);
+        }
+
+        .bus-row .bus-label {
+            font-weight: 700;
+            padding-right: 10px !important;
+            color: #8B5A2B;
+        }
+
+        .bus-row .bus-time {
+            color: #5c3d1e;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 360px;
+            text-decoration: none;
+            color: #73512F;
+            font-weight: 700;
+            font-size: clamp(0.85rem, 2vh, 1rem);
+            letter-spacing: 1px;
+            border: 1px solid #d4af37;
+            border-radius: 30px;
+            padding: 2.5vh 3vh;
+            background: rgba(255, 255, 255, 0.6);
+            transition: transform 0.2s, background 0.2s;
+            margin-top: 1vh;
+        }
+
+        .whatsapp-btn:active {
+            transform: scale(0.97);
+            background: rgba(250, 195, 218, 0.5);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.2rem;
+        }
+
+        .whatsapp-note {
+            font-size: clamp(0.7rem, 1.6vh, 0.8rem);
+            color: #8B5A2B;
+            margin-top: 1.2vh;
+            max-width: 300px;
+        }
+
+        /* ---------------------------------------------------
+            MEDIA QUERIES (Ajustes Mobile vs PC)
+        --------------------------------------------------- */
+
+        @media (max-width: 768px) {
+            .card-container {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .card-container {
+                width: 420px;
+                height: 100%;
+                max-height: 850px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="card-container">
+        <div class="page-content">
+
+            <a href="index.html" class="back-link">
+                <span class="arrow">←</span>
+                <span>Voltar ao convite</span>
+            </a>
+
+            <div class="page-header">
+                <div class="stars">✨ ⚠️ ✨</div>
+                <h1 class="page-title">Avisos</h1>
+                <div class="page-subtitle">INFORMAÇÕES IMPORTANTES</div>
+            </div>
+
+            <div class="notice-list">
+
+                 <div class="notice-card">
+                    <div class="notice-head">
+                        <div class="notice-icon">📢</div>
+                        <div class="notice-title">Regras de etiqueta</div>
+                    </div>
+                
+                    <p class="notice-text">CONVIDADO NÃO CONVIDA</p>
+                </div>
+
+                <div class="notice-card">
+                    <div class="notice-head">
+                        <div class="notice-icon">🏊</div>
+                        <div class="notice-title">Tem piscina no local</div>
+                    </div>
+                    <p class="notice-text">
+                        O espaço da festa conta com piscina. Quem quiser aproveitar,
+                        traga roupa de banho, toalha e uma muda de roupa extra.
+                    </p>
+                </div>
+
+                <div class="notice-card">
+                    <div class="notice-head">
+                        <div class="notice-icon">🚌</div>
+                        <div class="notice-title">Ônibus (ida e volta)</div>
+                    </div>
+                    <p class="notice-text">
+                        Teremos ônibus fretado para quem quiser ir e voltar sem preocupação.
+                        Confira os horários e o ponto de embarque:
+                    </p>
+                    <div class="bus-schedule">
+                        <div class="bus-row">
+                            <span class="bus-label">IDA</span>
+                            <span class="bus-time">Saída às 09:00h — Ponto de embarque a definir</span>
+                        </div>
+                        <div class="bus-row">
+                            <span class="bus-label">VOLTA</span>
+                            <span class="bus-time">Saída às 18:00h — do local da festa</span>
+                        </div>
+                    </div>
+                    <br>
+                    <p>Valor: R$40,00 (Por pessoa) </p>
+                    <br>
+                    <p><strong>deve ser pago até o dia 01/10</strong></p>
+                </div>
+
+               
+
+            </div>
+
+            <p><strong>Quer saber mais sobre o ônibus?</strong></p>
+
+            <a href="https://chat.whatsapp.com/ClomrEfkuqSAXL8D1tH1Wg?s=sw&p=a&mlu=4&ilr=4" target="_blank" class="whatsapp-btn">
+                <span class="whatsapp-icon">💬</span>
+                <span>Entrar no grupo do WhatsApp</span>
+            </a>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
